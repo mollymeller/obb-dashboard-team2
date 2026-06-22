@@ -310,6 +310,82 @@
       </table>
       <div class="insight">Most churned accounts are concentrated within 10–15 miles of the brewery and remain open, making them actively re-engageable. Seasonal accounts require a different retention strategy timed to their operating calendar.</div>
     </div>
+
+    <div class="section-label">Account Segmentation — k-Means Clustering (k=6), 2025</div>
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="chart-title">Six Distinct Account Groups Identified Across 181 Wholesale Accounts</div>
+      <div class="chart-sub">k-means clustering on 2025 revenue and all-time invoice count reveals meaningful tiers of account health — from large opportunity groups to a single top account that significantly outpaces the rest of the portfolio.</div>
+
+      <table class="data-table" style="margin-bottom:1rem">
+        <thead>
+          <tr>
+            <th>Cluster</th>
+            <th>Label</th>
+            <th>Accounts</th>
+            <th>Avg. Revenue</th>
+            <th>Avg. Invoices</th>
+            <th>Notable Accounts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-gray">0</span></td>
+            <td><strong>Opportunity Group</strong></td>
+            <td>118</td>
+            <td>$495</td>
+            <td>4</td>
+            <td>Sunday River, Blue Hill Co-op, Rooper's, Portland Lobster Co.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">1</span></td>
+            <td><strong>Growing Relationships</strong></td>
+            <td>32</td>
+            <td>$2,000</td>
+            <td>16</td>
+            <td>Genuine accounts building history, not yet at established core level</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-orange">2</span></td>
+            <td><strong>Established Core</strong></td>
+            <td>21</td>
+            <td>$3,000</td>
+            <td>31</td>
+            <td>The Great Lost Bear, Bow St. Wells</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">3</span></td>
+            <td><strong>High Revenue / Strong Frequency</strong></td>
+            <td>6</td>
+            <td>$7,000</td>
+            <td>45</td>
+            <td>Top revenue accounts with consistent order cycles</td>
+          </tr>
+          <tr>
+            <td style="background:#F3E6FA"><span class="badge" style="background:#E8D0F5;color:#5A1A8A">4</span></td>
+            <td><strong>High Revenue / High Frequency</strong></td>
+            <td>3</td>
+            <td>$8,000</td>
+            <td>79</td>
+            <td>RSVP, Bow St. Freeport, Barber Bros. — primary weekly delivery accounts</td>
+          </tr>
+          <tr>
+            <td><span class="badge" style="background:#E5E2DC;color:#5A5650">5</span></td>
+            <td><strong>Top Account</strong></td>
+            <td>1</td>
+            <td>$14,186</td>
+            <td>40</td>
+            <td>Bow St. Forest Ave — top account by far, with substantial year-over-year growth</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="insight" style="margin-bottom:1rem">
+        <strong>Revenue concentration risk:</strong> The opportunity group (Cluster 0, 118 accounts) generated $58,423 combined in 2025, while the top 10 accounts (Clusters 3, 4, and 5) generated $82,747. Any significant drop in revenue from the top 10 accounts would be felt immediately and disproportionately — representing a meaningful concentration risk in Orange Bike Brewing's current account portfolio.
+      </div>
+      <div class="insight">
+        <strong>Opportunity group outlook:</strong> Cluster 0 has the most within-group variation and could benefit from further sub-clustering in a future analysis. Outliers within this group — including Sunday River, Blue Hill Co-op, Rooper's, and Portland Lobster Co. — show higher-than-typical frequency for their revenue tier and represent near-term development opportunities. Frequent, small-order accounts in this group may reflect new relationships still building order cadence.
+      </div>
+    </div>
   </div>
 </div>
 
