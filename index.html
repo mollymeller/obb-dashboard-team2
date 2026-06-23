@@ -95,10 +95,16 @@
   .rec-table { width: 100%; border-collapse: collapse; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; margin-bottom: 1.5rem; }
   .rec-table th { background: var(--charcoal); color: var(--white); padding: .85rem 1rem; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; text-align: left; vertical-align: top; }
   .rec-table td { padding: 1rem; border: 1px solid var(--rule); vertical-align: top; line-height: 1.5; color: var(--ink); }
-  .rec-table tr:nth-child(even) td { background: #FDFAF6; }
   .rec-table td ul { padding-left: 1.1rem; margin-top: .35rem; }
   .rec-table td ul li { margin-bottom: .3rem; }
   .rec-category { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+  .rec-row-urgent td   { background: #FAE8E8; }
+  .rec-row-moderate td { background: #FDF6E0; }
+  .rec-row-waitlist td { background: #E8F3E8; }
+  .rec-row-urgent td:hover, .rec-row-moderate td:hover, .rec-row-waitlist td:hover { filter: brightness(0.97); }
+  .rec-legend { display: flex; gap: 1.5rem; margin-bottom: 1.25rem; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--ink); flex-wrap: wrap; }
+  .rec-legend-item { display: flex; align-items: center; gap: 8px; }
+  .rec-legend-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.12); flex-shrink: 0; }
 
   /* dataset accordion */
   .dataset-card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; margin-bottom: 1.25rem; overflow: hidden; }
@@ -662,48 +668,53 @@
       <h1>Recommendations</h1>
       <p>Findings, recommendations, and future direction — drawn from the full project analysis</p>
     </div>
+    <div class="rec-legend">
+      <div class="rec-legend-item"><div class="rec-legend-dot" style="background:#F2B8B8"></div>Most Urgent</div>
+      <div class="rec-legend-item"><div class="rec-legend-dot" style="background:#F9E9A0"></div>Somewhat Urgent</div>
+      <div class="rec-legend-item"><div class="rec-legend-dot" style="background:#B8DDB8"></div>Will require time / can wait</div>
+    </div>
     <table class="rec-table">
       <thead>
         <tr><th style="width:22%">Client Expectations &amp; Problems</th><th style="width:26%">Our Findings from Data</th><th style="width:27%">Recommendations</th><th style="width:25%">Future Direction</th></tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="rec-row-urgent">
           <td><div class="rec-category">Production Planning</div>Seasonal dips and unpredictable demand for core SKUs. No system to match batch timing against anticipated wholesale and taproom demand.</td>
           <td>Revenue peaks sharply in July–August and follows a predictable seasonal curve. Pilsner is the most consistent year-round SKU. Seasonal styles (Oktoberfest, Winter Lager, Summer Ale) have narrow demand windows. Guava Sour showed unexpected winter 2026 strength, suggesting a possible emerging shift in demand pattern.</td>
           <td><ul><li>Use Pilsner and Pale Ale as production anchors; schedule seasonal SKUs around them.</li><li>Begin Oktoberfest production in July–August, Winter Lager in October–November, Summer Ale in April–May.</li><li>Monitor Guava Sour winter performance — it may warrant adjusted production timing.</li></ul></td>
           <td>Once production data is received, overlay actual batch timing against demand curves to quantify production-demand gaps by week. A what-if analysis modeling revenue at varying production volumes is included on the Products &amp; Production page.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-urgent">
           <td><div class="rec-category">Account Management</div>Churn risk undetected until accounts are already lost. No structured framework for monitoring account-level performance trends.</td>
           <td>25 accounts active in 2024 placed no orders in 2025, representing $8,709 (7.3% of 2024 gross wholesale revenue). Three are permanently closed; six are seasonal; sixteen are open and re-engageable. Most are within 15 miles of the brewery.</td>
           <td><ul><li>Implement a quarterly monitoring process flagging accounts with no orders in 90+ days.</li><li>Prioritize outreach to the 16 open, non-seasonal churned accounts.</li><li>Develop a separate re-engagement strategy for seasonal accounts timed to their operating calendar.</li><li>Use RSVP and Barber Bros. as models for year-round account development.</li></ul></td>
           <td>A logistic regression or decision-tree churn prediction model can be built once churned accounts are fully characterized. Candidate features include order frequency, average order value, SKU diversity, account tenure, and distance from the brewery.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-urgent">
           <td><div class="rec-category">Hannaford Expansion</div>Only five of 27 Hannaford locations are generating data. The analysis reflects 25 stores based on data available at the time of the study — two additional locations represent incremental upside not yet captured in the forecast.</td>
           <td>The five active Hannaford locations generate an average of $421 per store per week. Look-alike account modeling projects weekly revenue growing from $2,715 (Apr 13) to $3,553 (Jun 29) — a 31% increase over 12 weeks. This was modeled against 25 stores; the two additional locations represent further upside.</td>
           <td><ul><li>Treat data collection from all 27 active Hannaford locations as an immediate priority.</li><li>Use the look-alike forecast as the planning benchmark while actual Hannaford data accumulates.</li><li>Prioritize summer production ramp to align with projected demand peak at Hannaford.</li></ul></td>
           <td>As more Hannaford stores activate, compare actual results against the look-alike forecast to validate model accuracy. Expand to the broader 188-store Ahold Delhaize network as the next horizon once Hannaford data is validated.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-moderate">
           <td><div class="rec-category">Wholesale Delivery</div>Inefficient delivery zones and high transit costs as the account base grows. No formal route structure in place.</td>
           <td>Active accounts are geographically clustered but routes are currently unoptimized. The distribution zone workbook provides an initial framework. RouteXL provides immediate stop-sequencing capability for up to 20 stops per route.</td>
           <td><ul><li>Use the distribution zone workbook and RouteXL immediately to plan and test delivery routes.</li><li>Begin geocoding all active accounts in preparation for formal k-means zone clustering.</li><li>Model route variants with and without new Hannaford stops before committing to route structure.</li></ul></td>
           <td>Full CVRP-based route optimization is planned for the final project phase, pending geocoded account data and routing constraints from Orange Bike Brewing. Multiple route scenarios will be modeled under different vehicle capacity and driver availability assumptions.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-moderate">
           <td><div class="rec-category">Revenue Forecasting</div>No structured forecasting in place. Reactive decision-making on production and sales planning.</td>
           <td>Monthly models (ARIMA, Holt-Winters, moving averages) underperformed on two years of data. A weekly EMA approach trained on 25 existing Orange Bike Brewing wholesale accounts — similar in geography and account type to the Hannaford distribution locations, using data shared with the team — produced reliable results for spring, summer, and fall (MAPE 20–32%), with winter remaining volatile at 56%.</td>
           <td><ul><li>Use the current weekly EMA model for near-term spring and summer planning; treat winter forecasts as directional only.</li><li>Rerun forecasting models after Summer 2026 with three full years of data — this unlocks Holt-Winters triple exponential smoothing.</li><li>Test taproom-to-wholesale lead relationship via Pearson correlation once a third year of data is available.</li></ul></td>
           <td>After Summer 2026, apply Holt-Winters triple exponential smoothing at the SKU level. Run a market prioritization model incorporating customer sentiment, temperature data, and public industry metrics for a stronger expansion sequencing basis.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-moderate">
           <td><div class="rec-category">Real-Time Data Infrastructure</div>Currently operating on static exports with no live data connection. Manual reporting creates lag between events and insight.</td>
           <td>All current analysis is built on exported CSVs from POS and accounting systems. The lack of a live data layer means trends are visible only in retrospect — churn, stockouts, and distribution gaps surface weeks or months after they occur.</td>
           <td><ul><li>Implement a cloud database (like Microsoft Azure SQL, AWS RDS, or similar) to centralize wholesale, taproom, and production data in real time.</li><li>Connect Tableau, Power BI, or another live dashboard software to the live database for auto-refreshing dashboards.</li><li>Establish automated data pipelines from Square POS and QuickBooks into the central database to eliminate manual exports.</li></ul></td>
           <td>A real-time data infrastructure would enable churn alerts, production-demand monitoring, and live route optimization as the account base continues to grow. This is the foundational investment that makes all future analytics significantly more actionable for Orange Bike Brewing.</td>
         </tr>
-        <tr>
+        <tr class="rec-row-waitlist">
           <td><div class="rec-category">Analytics Staffing &amp; Training</div>Orange Bike Brewing has early-stage analytics capacity — two employees who handle some analysis — but both are early in their careers and expected to cover responsibilities outside of analytics, limiting the depth and consistency of data work the team can sustain.</td>
           <td>The analytical foundation exists but is stretched thin. With the right support and focus, the existing team has the potential to grow into this function — but without clearer role boundaries and mentorship, analytics work risks being deprioritized when operational demands increase.</td>
           <td><ul><li>Define a clear analytics-focused scope for both employees, reducing the expectation that they absorb non-analytics responsibilities.</li><li>Engage a data analyst consultant to mentor the existing team, build their skills in database maintenance, dashboard interpretation, and model refresh cadence.</li><li>As the team matures, consider adding a dedicated business intelligence role focused solely on analytics as Orange Bike Brewing's data infrastructure grows.</li><li>Establish a regular analytics review cadence (monthly or quarterly) where findings are reviewed by leadership and translated into operational decisions.</li></ul></td>
